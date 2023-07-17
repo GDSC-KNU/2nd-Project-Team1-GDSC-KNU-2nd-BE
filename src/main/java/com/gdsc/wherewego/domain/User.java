@@ -1,19 +1,34 @@
 package com.gdsc.wherewego.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.Data;
 
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Getter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
-@Data
+@Table(name = "user_account")
 public class User {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
 
-    private String name;
-    private Integer age;
+    @Column(nullable = false, length = 20)
+    private String nickname;
+
+    @Column(nullable = false, length = 128)
+    private String password;
+
+    @Builder.Default
+    private String profileUrl = null;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @Builder.Default
+    @ToString.Exclude
+    private List<Schedule> schedules = new ArrayList<>();
 }
