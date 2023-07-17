@@ -1,8 +1,8 @@
-package com.gdsc.wherewego.oauth.member.application;
+package com.gdsc.wherewego.domain.member.controller;
 
-import com.gdsc.wherewego.oauth.authentication.domain.AuthTokensGenerator;
-import com.gdsc.wherewego.oauth.member.domain.Member;
-import com.gdsc.wherewego.oauth.member.domain.MemberRepository;
+import com.gdsc.wherewego.domain.authentication.domain.AuthTokensGenerator;
+import com.gdsc.wherewego.domain.member.entity.Member;
+import com.gdsc.wherewego.domain.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

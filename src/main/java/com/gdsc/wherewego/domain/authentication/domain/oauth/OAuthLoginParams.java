@@ -1,4 +1,4 @@
-package com.gdsc.wherewego.oauth.authentication.domain.oauth;
+package com.gdsc.wherewego.domain.authentication.domain.oauth;
 
 import org.springframework.util.MultiValueMap;
 

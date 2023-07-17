@@ -1,4 +1,4 @@
-package com.gdsc.wherewego.oauth.member.domain;
+package com.gdsc.wherewego.domain.member.entity;
 
 import jakarta.persistence.*;
 import lombok.Builder;

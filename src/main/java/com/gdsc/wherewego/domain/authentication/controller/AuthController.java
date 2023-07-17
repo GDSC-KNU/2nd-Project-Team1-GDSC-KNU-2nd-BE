@@ -1,7 +1,8 @@
-package com.gdsc.wherewego.oauth.authentication.application;
+package com.gdsc.wherewego.domain.authentication.controller;
 
-import com.gdsc.wherewego.oauth.authentication.domain.AuthTokens;
-import com.gdsc.wherewego.oauth.authentication.infra.kakao.KakaoLoginParams;
+import com.gdsc.wherewego.domain.authentication.domain.AuthTokens;
+import com.gdsc.wherewego.domain.authentication.service.OAuthLoginService;
+import com.gdsc.wherewego.domain.authentication.kakao.KakaoLoginParams;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

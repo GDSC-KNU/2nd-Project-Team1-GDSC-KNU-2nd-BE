@@ -1,10 +1,9 @@
-package com.gdsc.wherewego.oauth.authentication.domain.oauth;
+package com.gdsc.wherewego.domain.authentication.service;
 
+import com.gdsc.wherewego.domain.authentication.domain.oauth.OAuthApiClient;
+import com.gdsc.wherewego.domain.authentication.domain.oauth.OAuthInfoResponse;
+import com.gdsc.wherewego.domain.authentication.domain.oauth.OAuthLoginParams;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 @Component
 public class RequestOAuthInfoService {

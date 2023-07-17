@@ -1,5 +1,6 @@
-package com.gdsc.wherewego.oauth.member.domain;
+package com.gdsc.wherewego.domain.member.repository;
 
+import com.gdsc.wherewego.domain.member.entity.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

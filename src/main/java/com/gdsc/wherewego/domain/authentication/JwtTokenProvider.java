@@ -1,4 +1,4 @@
-package com.gdsc.wherewego.oauth.authentication.infra;
+package com.gdsc.wherewego.domain.authentication;
 
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;

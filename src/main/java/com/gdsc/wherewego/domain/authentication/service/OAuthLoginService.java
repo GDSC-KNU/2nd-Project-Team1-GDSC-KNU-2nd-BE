@@ -1,12 +1,11 @@
-package com.gdsc.wherewego.oauth.authentication.application;
+package com.gdsc.wherewego.domain.authentication.service;
 
-import com.gdsc.wherewego.oauth.authentication.domain.AuthTokens;
-import com.gdsc.wherewego.oauth.authentication.domain.AuthTokensGenerator;
-import com.gdsc.wherewego.oauth.authentication.domain.oauth.OAuthInfoResponse;
-import com.gdsc.wherewego.oauth.authentication.domain.oauth.OAuthLoginParams;
-import com.gdsc.wherewego.oauth.authentication.domain.oauth.RequestOAuthInfoService;
-import com.gdsc.wherewego.oauth.member.domain.Member;
-import com.gdsc.wherewego.oauth.member.domain.MemberRepository;
+import com.gdsc.wherewego.domain.authentication.domain.oauth.OAuthLoginParams;
+import com.gdsc.wherewego.domain.authentication.domain.AuthTokens;
+import com.gdsc.wherewego.domain.authentication.domain.AuthTokensGenerator;
+import com.gdsc.wherewego.domain.authentication.domain.oauth.OAuthInfoResponse;
+import com.gdsc.wherewego.domain.member.entity.Member;
+import com.gdsc.wherewego.domain.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

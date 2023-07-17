@@ -1,4 +1,4 @@
-package com.gdsc.wherewego.oauth.authentication.domain;
+package com.gdsc.wherewego.domain.authentication.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

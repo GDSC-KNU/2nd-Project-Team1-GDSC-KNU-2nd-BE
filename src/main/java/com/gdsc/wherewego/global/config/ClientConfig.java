@@ -1,4 +1,4 @@
-package com.gdsc.wherewego.oauth.common.config;
+package com.gdsc.wherewego.global.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

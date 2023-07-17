@@ -1,6 +1,6 @@
-package com.gdsc.wherewego.oauth.authentication.infra.kakao;
+package com.gdsc.wherewego.domain.authentication.kakao;
 
-import com.gdsc.wherewego.oauth.authentication.domain.oauth.OAuthLoginParams;
+import com.gdsc.wherewego.domain.authentication.domain.oauth.OAuthLoginParams;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.util.LinkedMultiValueMap;
