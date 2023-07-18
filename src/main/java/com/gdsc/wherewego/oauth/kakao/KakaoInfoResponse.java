@@ -1,8 +1,8 @@
-package com.gdsc.wherewego.domain.authentication.kakao;
+package com.gdsc.wherewego.oauth.kakao;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.gdsc.wherewego.domain.authentication.domain.oauth.OAuthInfoResponse;
+import com.gdsc.wherewego.oauth.OAuthInfoResponse;
 import lombok.Getter;
 
 @Getter

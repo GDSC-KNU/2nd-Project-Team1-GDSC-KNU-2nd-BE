@@ -1,4 +1,4 @@
-package com.gdsc.wherewego.domain.authentication.domain.oauth;
+package com.gdsc.wherewego.oauth;
 
 public interface OAuthInfoResponse {
     String getEmail();

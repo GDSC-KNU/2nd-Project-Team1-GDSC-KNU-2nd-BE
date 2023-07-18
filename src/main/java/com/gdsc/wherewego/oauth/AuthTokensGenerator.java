@@ -1,6 +1,5 @@
-package com.gdsc.wherewego.domain.authentication.domain;
+package com.gdsc.wherewego.oauth;
 
-import com.gdsc.wherewego.domain.authentication.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

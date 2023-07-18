@@ -1,8 +1,8 @@
-package com.gdsc.wherewego.domain.authentication.service;
+package com.gdsc.wherewego.service;
 
-import com.gdsc.wherewego.domain.authentication.domain.oauth.OAuthApiClient;
-import com.gdsc.wherewego.domain.authentication.domain.oauth.OAuthInfoResponse;
-import com.gdsc.wherewego.domain.authentication.domain.oauth.OAuthLoginParams;
+import com.gdsc.wherewego.oauth.OAuthApiClient;
+import com.gdsc.wherewego.oauth.OAuthInfoResponse;
+import com.gdsc.wherewego.oauth.OAuthLoginParams;
 import org.springframework.stereotype.Component;
 
 @Component
