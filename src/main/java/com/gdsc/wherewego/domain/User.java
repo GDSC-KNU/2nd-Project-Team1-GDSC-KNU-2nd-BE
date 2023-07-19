@@ -22,7 +22,7 @@ public class User {
     private String nickname;
 
     @Column(nullable = false, length = 128)
-    private String password;
+    private String email;
 
     @Builder.Default
     private String profileUrl = null;
