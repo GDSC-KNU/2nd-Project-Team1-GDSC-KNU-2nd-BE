@@ -5,6 +5,7 @@ import com.gdsc.wherewego.domain.category.FoodType;
 import com.gdsc.wherewego.domain.category.Theme;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -14,29 +15,33 @@ import java.util.List;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Getter
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "CATEGORY_ID")
+    @OneToOne
+    @JoinColumn(name = "SCHEDULE_ID")
     private Schedule schedule;
 
-    @OneToOne(mappedBy = "Category", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @OneToOne(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private Place place;
 
-    @Column(nullable = false)
-    @OneToMany(mappedBy = "Category", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<FoodType> foodType = new ArrayList<>();
 
-    @Column(nullable = false)
-    @OneToMany(mappedBy = "Category", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<Theme> theme = new ArrayList<>();
 
-    @Column(nullable = false)
-    @OneToMany(mappedBy = "Category", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<District> district = new ArrayList<>();
+    public Category(Schedule schedule){
+        this.schedule = schedule;
+    }
+    public void addDistrict(List<District> district){
+        this.district = district;
+    }
 
 }

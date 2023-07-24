@@ -2,16 +2,15 @@ package com.gdsc.wherewego.domain.category;
 
 import com.gdsc.wherewego.domain.Category;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
-@Entity
-@RequiredArgsConstructor
-@NoArgsConstructor
 @Getter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
 public class Theme {
-//    CAFE("카페"),
+    //    CAFE("카페"),
 //    SCENERY("경치관람"),
 //    ARBORETUM("수목원/정원"),
 //    THEME("테마파크/아쿠아리움"),
@@ -34,3 +33,4 @@ public class Theme {
     private String type;
 
 }
+

@@ -22,7 +22,6 @@ public class Place {
     private String name;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "PLACE_ID")
     private Category category;
 
     @Column(nullable = false)

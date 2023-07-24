@@ -2,14 +2,14 @@ package com.gdsc.wherewego.domain.category;
 
 import com.gdsc.wherewego.domain.Category;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
-@Entity
-@RequiredArgsConstructor
-@NoArgsConstructor
+
 @Getter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
 public class District {
 //    JUNG_GU("중구"),
 //    SEO_GU("서구"),
@@ -30,4 +30,8 @@ public class District {
 
     private String city;
 
+    public District(Category category, String city){
+        this.category = category;
+        this.city = city;
+    }
 }

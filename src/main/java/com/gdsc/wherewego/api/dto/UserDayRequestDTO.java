@@ -6,6 +6,6 @@ import java.time.LocalDate;
 
 @Data
 public class UserDayRequestDTO {
-    private LocalDate startDate;
-    private LocalDate endDate;
+    private String startDate;
+    private String endDate;
 }

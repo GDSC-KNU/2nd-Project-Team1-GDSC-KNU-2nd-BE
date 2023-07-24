@@ -28,18 +28,17 @@ public class Schedule {
     private String name;
 
     @Column(nullable = false)
-    private LocalDate startDate;
+    private String startDate;
 
     @Column(nullable = false)
-    private LocalDate endDate;
+    private String endDate;
 
     @Builder.Default
     private boolean isDone = false;
 
-    @Column(nullable = false)
-    @OneToOne(mappedBy = "schedule", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @JoinColumn(name = "CATEGORY_ID")
+    @OneToOne(mappedBy = "schedule")
     private Category category;
-
 
     @ManyToOne
     @JoinColumn(nullable = false)
@@ -49,9 +48,21 @@ public class Schedule {
     @Builder.Default
     private List<DailySchedule> dailySchedules = new ArrayList<>();
 
+    @Column(nullable = false)
+    private Integer withPeople;
+
+    @Column(nullable = false)
+    private Integer budget;
+
+
     public Schedule(User user, UserDayRequestDTO dayDTO){
         this.user = user;
         this.startDate = dayDTO.getStartDate();
         this.endDate = dayDTO.getEndDate();
+    }
+
+    public void setBasicInfo(Integer withPeople, Integer budget){
+        this.withPeople = withPeople;
+        this.budget = budget;
     }
 }
