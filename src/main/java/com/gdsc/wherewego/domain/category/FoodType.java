@@ -25,4 +25,9 @@ public class FoodType {
     private Category category;
 
     private String type;
+
+    public FoodType(Category category, String type){
+        this.category = category;
+        this.type = type;
+    }
 }

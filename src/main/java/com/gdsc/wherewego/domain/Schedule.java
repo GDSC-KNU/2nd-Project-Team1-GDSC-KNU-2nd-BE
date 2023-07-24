@@ -54,6 +54,8 @@ public class Schedule {
     @Column(nullable = false)
     private Integer budget;
 
+    @Column(nullable = false)
+    private String transportation;
 
     public Schedule(User user, UserDayRequestDTO dayDTO){
         this.user = user;
@@ -64,5 +66,9 @@ public class Schedule {
     public void setBasicInfo(Integer withPeople, Integer budget){
         this.withPeople = withPeople;
         this.budget = budget;
+    }
+
+    public void setTransportation(String transportation){
+        this.transportation = transportation;
     }
 }

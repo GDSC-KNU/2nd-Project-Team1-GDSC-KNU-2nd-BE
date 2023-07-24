@@ -40,8 +40,11 @@ public class Category {
     public Category(Schedule schedule){
         this.schedule = schedule;
     }
-    public void addDistrict(List<District> district){
+    public void setDistrict(List<District> district){
         this.district = district;
     }
 
+    public void setFoodType(List<FoodType> foodType){
+        this.foodType = foodType;
+    }
 }

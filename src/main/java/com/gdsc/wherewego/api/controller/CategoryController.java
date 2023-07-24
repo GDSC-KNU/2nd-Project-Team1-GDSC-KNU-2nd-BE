@@ -2,6 +2,7 @@ package com.gdsc.wherewego.api.controller;
 
 import com.gdsc.wherewego.api.dto.UserDayRequestDTO;
 import com.gdsc.wherewego.api.dto.UserDistrictRequestDTO;
+import com.gdsc.wherewego.api.dto.UserFoodRequestDTO;
 import com.gdsc.wherewego.service.CategoryService;
 import com.gdsc.wherewego.service.ScheduleService;
 import lombok.RequiredArgsConstructor;
@@ -34,4 +35,9 @@ public class CategoryController {
         return ResponseEntity.ok().body("도시 선택 완료");
     }
 
+    @PostMapping("/select/{userId}/{scheduleId}")
+    public ResponseEntity<String> selectFood(@RequestBody UserFoodRequestDTO userFoodRequestDTO, @PathVariable("userID") Long userId, @PathVariable("scheduleId") Long scheduleId){
+        categoryService.selectFood(userFoodRequestDTO, scheduleId);
+        return ResponseEntity.ok().body("음식 종류 선택 완료");
+    }
 }
