@@ -1,5 +1,6 @@
 package com.gdsc.wherewego.domain;
 
+import com.gdsc.wherewego.api.dto.UserDayRequestDTO;
 import com.gdsc.wherewego.domain.category.District;
 import com.gdsc.wherewego.domain.category.FoodType;
 import com.gdsc.wherewego.domain.category.Theme;
@@ -47,4 +48,10 @@ public class Schedule {
     @OneToMany(mappedBy = "schedule", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     @Builder.Default
     private List<DailySchedule> dailySchedules = new ArrayList<>();
+
+    public Schedule(User user, UserDayRequestDTO dayDTO){
+        this.user = user;
+        this.startDate = dayDTO.getStartDate();
+        this.endDate = dayDTO.getEndDate();
+    }
 }
