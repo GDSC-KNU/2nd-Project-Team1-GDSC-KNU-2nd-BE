@@ -1,8 +1,8 @@
 package com.gdsc.wherewego.domain;
 
-import com.gdsc.wherewego.domain.constant.District;
-import com.gdsc.wherewego.domain.constant.FoodType;
-import com.gdsc.wherewego.domain.constant.Theme;
+import com.gdsc.wherewego.domain.category.District;
+import com.gdsc.wherewego.domain.category.FoodType;
+import com.gdsc.wherewego.domain.category.Theme;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -36,16 +36,9 @@ public class Schedule {
     private boolean isDone = false;
 
     @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
-    private FoodType foodType;
+    @OneToOne(mappedBy = "schedule", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private Category category;
 
-    @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
-    private District district;
-
-    @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
-    private Theme theme;
 
     @ManyToOne
     @JoinColumn(nullable = false)

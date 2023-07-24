@@ -7,8 +7,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.NoSuchElementException;
 
-import static com.gdsc.wherewego.domain.constant.District.*;
-import static com.gdsc.wherewego.domain.constant.Theme.*;
+import static com.gdsc.wherewego.domain.category.District.*;
+import static com.gdsc.wherewego.domain.category.Theme.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

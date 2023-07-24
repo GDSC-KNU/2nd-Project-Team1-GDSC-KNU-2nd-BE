@@ -1,7 +1,7 @@
 package com.gdsc.wherewego.domain;
 
-import com.gdsc.wherewego.domain.constant.District;
-import com.gdsc.wherewego.domain.constant.Theme;
+import com.gdsc.wherewego.domain.category.District;
+import com.gdsc.wherewego.domain.category.Theme;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,11 +21,9 @@ public class Place {
     @Column(nullable = false)
     private String name;
 
-    @Enumerated(EnumType.STRING)
-    private Theme theme;
-
-    @Enumerated(EnumType.STRING)
-    private District district;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "PLACE_ID")
+    private Category category;
 
     @Column(nullable = false)
     private Double latitude;

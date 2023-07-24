@@ -1,6 +1,5 @@
 package com.gdsc.wherewego.repository;
 
-import com.gdsc.wherewego.domain.Image;
 import com.gdsc.wherewego.domain.Post;
 import com.gdsc.wherewego.domain.Schedule;
 import com.gdsc.wherewego.domain.User;
@@ -10,9 +9,9 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 
-import static com.gdsc.wherewego.domain.constant.District.*;
-import static com.gdsc.wherewego.domain.constant.FoodType.*;
-import static com.gdsc.wherewego.domain.constant.Theme.*;
+import static com.gdsc.wherewego.domain.category.District.*;
+import static com.gdsc.wherewego.domain.category.FoodType.*;
+import static com.gdsc.wherewego.domain.category.Theme.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

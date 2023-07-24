@@ -4,14 +4,12 @@ import com.gdsc.wherewego.domain.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import java.time.LocalDate;
 
-import static com.gdsc.wherewego.domain.constant.District.*;
-import static com.gdsc.wherewego.domain.constant.FoodType.*;
-import static com.gdsc.wherewego.domain.constant.Theme.*;
+import static com.gdsc.wherewego.domain.category.District.*;
+import static com.gdsc.wherewego.domain.category.FoodType.*;
+import static com.gdsc.wherewego.domain.category.Theme.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
