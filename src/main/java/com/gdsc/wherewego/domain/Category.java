@@ -47,4 +47,8 @@ public class Category {
     public void setFoodType(List<FoodType> foodType){
         this.foodType = foodType;
     }
+
+    public void setTheme(List<Theme> theme){
+        this.theme = theme;
+    }
 }

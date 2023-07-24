@@ -2,11 +2,13 @@ package com.gdsc.wherewego.service;
 
 import com.gdsc.wherewego.api.dto.UserDistrictRequestDTO;
 import com.gdsc.wherewego.api.dto.UserFoodRequestDTO;
+import com.gdsc.wherewego.api.dto.UserThemeRequestDTO;
 import com.gdsc.wherewego.domain.Category;
 import com.gdsc.wherewego.domain.Schedule;
 import com.gdsc.wherewego.domain.User;
 import com.gdsc.wherewego.domain.category.District;
 import com.gdsc.wherewego.domain.category.FoodType;
+import com.gdsc.wherewego.domain.category.Theme;
 import com.gdsc.wherewego.repository.CategoryRepository;
 import com.gdsc.wherewego.repository.ScheduleRepository;
 import com.gdsc.wherewego.repository.UserRepository;
@@ -62,5 +64,21 @@ public class CategoryService {
 
         category.setFoodType(foodTypeList);
         schedule.setTransportation(userFoodRequestDTO.getTransportation());
+    }
+
+    @Transactional
+    public void selectTheme(UserThemeRequestDTO userThemeRequestDTO, Long scheduleId){
+        Optional<Schedule> optionalSchedule = scheduleRepository.findById(scheduleId);
+        Schedule schedule = optionalSchedule.get();
+
+        Category category = categoryRepository.findCategoryByScheduleId(schedule.getId());
+        List<String> stringThemeList = userThemeRequestDTO.getTheme();
+        List<Theme> themeList = new ArrayList<>();
+
+        for (String t : stringThemeList) {
+            Theme theme = new Theme(category, t);
+            themeList.add(theme);
+        }
+        category.setTheme(themeList);
     }
 }

@@ -32,5 +32,9 @@ public class Theme {
 
     private String type;
 
+    public Theme(Category category, String type){
+        this.category = category;
+        this.type = type;
+    }
 }
 
