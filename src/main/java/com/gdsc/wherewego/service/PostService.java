@@ -2,9 +2,9 @@ package com.gdsc.wherewego.service;
 
 import com.gdsc.wherewego.domain.Image;
 import com.gdsc.wherewego.domain.Post;
-import com.gdsc.wherewego.dto.response.PostCreateResponse;
-import com.gdsc.wherewego.dto.response.PostFindAllResponse;
-import com.gdsc.wherewego.dto.response.PostFindResponse;
+import com.gdsc.wherewego.dto.response.post.PostCreateResponse;
+import com.gdsc.wherewego.dto.response.post.PostFindAllResponse;
+import com.gdsc.wherewego.dto.response.post.PostFindResponse;
 import com.gdsc.wherewego.exception.NoSuchElementException;
 import com.gdsc.wherewego.repository.ImageRepository;
 import com.gdsc.wherewego.repository.PostRepository;
@@ -54,25 +54,27 @@ public class PostService {
                         .orElseThrow(() -> new NoSuchElementException(SCHEDULE)))
                 .build());
 
-        multipartFiles.stream()
-                .map(this::upload)
-                .map(url -> Image.builder().post(savePost).url(url).build())
-                .forEach(images::save);
+        if(multipartFiles != null)
+            multipartFiles.stream()
+                    .map(this::upload)
+                    .map(url -> Image.builder().post(savePost).url(url).build())
+                    .forEach(images::save);
 
         return PostCreateResponse.from(savePost);
     }
 
-    public void updatePost(final Long postId, String title, String content, List<MultipartFile> multipartFiles) {
+    public void updatePost(final Long postId, List<MultipartFile> multipartFiles, String title, String content) {
         Post post = posts.findById(postId)
                 .orElseThrow(() -> new NoSuchElementException(POST));
 
         post.setTitle(title);
         post.setContent(content);
 
-        multipartFiles.stream()
-                .map(this::upload)
-                .map(url -> Image.builder().post(post).url(url).build())
-                .forEach(images::save);
+        if(multipartFiles != null)
+            multipartFiles.stream()
+                    .map(this::upload)
+                    .map(url -> Image.builder().post(post).url(url).build())
+                    .forEach(images::save);
     }
 
     public void deletePost(final Long postId) {

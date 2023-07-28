@@ -1,4 +1,4 @@
-package com.gdsc.wherewego.dto.response;
+package com.gdsc.wherewego.dto.response.post;
 
 import java.util.List;
 

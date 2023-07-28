@@ -1,8 +1,10 @@
 package com.gdsc.wherewego.controller;
 
-import com.gdsc.wherewego.dto.response.PostCreateResponse;
-import com.gdsc.wherewego.dto.response.PostFindAllResponse;
-import com.gdsc.wherewego.dto.response.PostFindResponse;
+import com.gdsc.wherewego.dto.request.PostCreateRequest;
+import com.gdsc.wherewego.dto.request.PostUpdateRequest;
+import com.gdsc.wherewego.dto.response.post.PostCreateResponse;
+import com.gdsc.wherewego.dto.response.post.PostFindAllResponse;
+import com.gdsc.wherewego.dto.response.post.PostFindResponse;
 import com.gdsc.wherewego.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +20,7 @@ import java.util.List;
 public class PostController {
     private final PostService postService;
 
-    @GetMapping("{postId}")
+    @GetMapping("/{postId}")
     public ResponseEntity<PostFindResponse> find(@PathVariable final Long postId) {
         return ResponseEntity.ok(postService.findPost(postId));
     }
@@ -30,40 +32,37 @@ public class PostController {
 
     @PostMapping
     public ResponseEntity<Void> create(
-            @RequestParam(required = false, value = "images") List<MultipartFile> images,
-            @RequestParam(value = "title") String title,
-            @RequestParam(value = "content") String content,
-            @RequestParam(value = "scheduleId") Long scheduleId) {
-        PostCreateResponse postCreateResponse = postService.savePost(title, content, scheduleId, images);
+            @RequestPart(required = false, value = "images") List<MultipartFile> images,
+            @RequestPart(value = "createRequest") PostCreateRequest createRequest) {
+        PostCreateResponse postCreateResponse = postService.savePost(createRequest.title(), createRequest.content(), createRequest.scheduleId(), images);
         return ResponseEntity.created(URI.create("api/posts/" + postCreateResponse.id()))
                 .build();
     }
 
-    @PutMapping("{postId}")
+    @PutMapping("/{postId}")
     public ResponseEntity<Void> update(
             @PathVariable final Long postId,
-            @RequestParam(required = false, value = "images") List<MultipartFile> images,
-            @RequestParam(value = "title") String title,
-            @RequestParam(value = "content") String content) {
-        postService.updatePost(postId, title, content, images);
+            @RequestPart(required = false, value = "images") List<MultipartFile> images,
+            @RequestPart(value = "updateRequest") PostUpdateRequest postUpdateRequest) {
+        postService.updatePost(postId, images, postUpdateRequest.title(), postUpdateRequest.content());
         return ResponseEntity.ok().build();
     }
 
-    @DeleteMapping("{postId}")
+    @DeleteMapping("/{postId}")
     public ResponseEntity<Void> delete(@PathVariable final Long postId) {
         postService.deletePost(postId);
         return ResponseEntity.noContent().build();
     }
 
-    @PostMapping("{postId}/like")
+    @PostMapping("/{postId}/like")
     public ResponseEntity<Void> like(@PathVariable final Long postId) {
         postService.likePost(postId);
         return ResponseEntity.ok().build();
     }
 
-    @DeleteMapping("{postId}/like")
+    @DeleteMapping("/{postId}/like")
     public ResponseEntity<Void> unlike(@PathVariable final Long postId) {
         postService.unlikePost(postId);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.noContent().build();
     }
 }

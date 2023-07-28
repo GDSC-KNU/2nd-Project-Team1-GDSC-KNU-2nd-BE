@@ -1,4 +1,4 @@
-package com.gdsc.wherewego.dto.response;
+package com.gdsc.wherewego.dto.response.post;
 
 import com.gdsc.wherewego.domain.Post;
 
