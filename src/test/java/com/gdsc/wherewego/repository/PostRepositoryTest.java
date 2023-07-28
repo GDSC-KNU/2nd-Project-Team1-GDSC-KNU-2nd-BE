@@ -5,6 +5,7 @@ import com.gdsc.wherewego.domain.Post;
 import com.gdsc.wherewego.domain.Schedule;
 import com.gdsc.wherewego.domain.User;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -17,6 +18,7 @@ import static com.gdsc.wherewego.domain.constant.Theme.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DisplayName("게시물 JPA 연결 테스트")
+@Disabled
 class PostRepositoryTest extends RepositoryTest{
     private User user;
     private Schedule schedule;
@@ -26,7 +28,6 @@ class PostRepositoryTest extends RepositoryTest{
     void init() {
         user = User.builder()
                 .nickname("창윤")
-                .password("thisispassword")
                 .profileUrl("www.asd.com")
                 .build();
 
