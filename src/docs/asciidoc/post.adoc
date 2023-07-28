@@ -1,0 +1,33 @@
+[[Post-API]]
+== 게시물 API
+
+[[Post-단일-조회]]
+=== 게시물 단일 조회하기
+operation::post-controller-test/find-post-by-id[snippets='http-request,http-response,path-parameters,response-fields']
+'''
+[[Post-전체-조회]]
+=== 사용자 게시물 전체 조회하기
+operation::post-controller-test/find-posts[snippets='http-request,http-response,response-fields']
+'''
+[[Post-생성]]
+=== 게시물 생성하기
+operation::post-controller-test/save-post[snippets='http-request,http-response,request-parts']
+'''
+[[Post-수정]]
+=== 게시물 수정하기
+==== Path parameters
+/api/posts{postId} : 수정할 게시물의 id
+
+operation::post-controller-test/update-post[snippets='http-request,http-response,request-parts']
+'''
+[[Post-삭제]]
+=== 게시물 삭제하기
+operation::post-controller-test/delete-post[snippets='http-request,http-response,path-parameters']
+'''
+[[Post-좋아요]]
+=== 좋아요 누르기
+operation::post-controller-test/like-post[snippets='http-request,http-response,path-parameters']
+'''
+[[Post-좋아요-취소]]
+=== 좋아요 취소하기
+operation::post-controller-test/unlike-post[snippets='http-request,http-response,path-parameters']

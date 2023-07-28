@@ -1,0 +1,14 @@
+= Where We Go API 문서
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 2
+:sectlinks:
+:docinfo: shared-head
+
+[[API-List]]
+== APIs
+
+=== Post API
+* link:post.html[게시물 API 목록, window=blank]
