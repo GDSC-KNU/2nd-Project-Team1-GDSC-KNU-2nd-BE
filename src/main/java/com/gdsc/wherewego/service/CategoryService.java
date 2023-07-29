@@ -1,15 +1,10 @@
 package com.gdsc.wherewego.service;
 
-import com.gdsc.wherewego.api.dto.UserDistrictRequestDTO;
-import com.gdsc.wherewego.api.dto.UserFoodRequestDTO;
-import com.gdsc.wherewego.api.dto.UserThemeRequestDTO;
-import com.gdsc.wherewego.domain.Category;
+import com.gdsc.wherewego.api.dto.CategoryDTO;
 import com.gdsc.wherewego.domain.Schedule;
-import com.gdsc.wherewego.domain.User;
 import com.gdsc.wherewego.domain.category.District;
 import com.gdsc.wherewego.domain.category.FoodType;
 import com.gdsc.wherewego.domain.category.Theme;
-import com.gdsc.wherewego.repository.CategoryRepository;
 import com.gdsc.wherewego.repository.ScheduleRepository;
 import com.gdsc.wherewego.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -27,58 +22,53 @@ public class CategoryService {
     private final ScheduleRepository scheduleRepository;
 
     private final UserRepository userRepository;
-    private final CategoryRepository categoryRepository;
 
     @Transactional
-    public void selectDistrict(UserDistrictRequestDTO userDistrictRequestDTO, Long scheduleId){
+    public void selectDistrict(CategoryDTO.UserDistrictRequestDTO userDistrictRequestDTO, Long scheduleId){
         Optional<Schedule> optionalSchedule = scheduleRepository.findById(scheduleId);
         Schedule schedule = optionalSchedule.get();
-
-        Category category = categoryRepository.findCategoryByScheduleId(schedule.getId());
 
         List<String> cityList = userDistrictRequestDTO.getCity();
         List<District> districtList = new ArrayList<>();
 
         for (String city : cityList) {
-            District district = new District(category, city);
+            District district = new District(schedule, city);
             districtList.add(district);
         }
 
-        category.setDistrict(districtList);
+        schedule.setDistrict(districtList);
         schedule.setBasicInfo(userDistrictRequestDTO.getWithPeople(), userDistrictRequestDTO.getBudget());
     }
 
     @Transactional
-    public void selectFood(UserFoodRequestDTO userFoodRequestDTO, Long scheduleId){
+    public void selectFood(CategoryDTO.UserFoodRequestDTO userFoodRequestDTO, Long scheduleId){
         Optional<Schedule> optionalSchedule = scheduleRepository.findById(scheduleId);
         Schedule schedule = optionalSchedule.get();
 
-        Category category = categoryRepository.findCategoryByScheduleId(schedule.getId());
         List<String> foodList = userFoodRequestDTO.getFood();
         List<FoodType> foodTypeList = new ArrayList<>();
 
         for (String food : foodList) {
-            FoodType foodType = new FoodType(category, food);
+            FoodType foodType = new FoodType(schedule, food);
             foodTypeList.add(foodType);
         }
 
-        category.setFoodType(foodTypeList);
+        schedule.setFoodType(foodTypeList);
         schedule.setTransportation(userFoodRequestDTO.getTransportation());
     }
 
     @Transactional
-    public void selectTheme(UserThemeRequestDTO userThemeRequestDTO, Long scheduleId){
+    public void selectTheme(CategoryDTO.UserThemeRequestDTO userThemeRequestDTO, Long scheduleId){
         Optional<Schedule> optionalSchedule = scheduleRepository.findById(scheduleId);
         Schedule schedule = optionalSchedule.get();
 
-        Category category = categoryRepository.findCategoryByScheduleId(schedule.getId());
         List<String> stringThemeList = userThemeRequestDTO.getTheme();
         List<Theme> themeList = new ArrayList<>();
 
         for (String t : stringThemeList) {
-            Theme theme = new Theme(category, t);
+            Theme theme = new Theme(schedule, t);
             themeList.add(theme);
         }
-        category.setTheme(themeList);
+        schedule.setTheme(themeList);
     }
 }

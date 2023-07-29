@@ -2,6 +2,8 @@ package com.gdsc.wherewego.domain;
 
 import com.gdsc.wherewego.domain.category.District;
 import com.gdsc.wherewego.domain.category.Theme;
+import com.gdsc.wherewego.domain.enumCategory.DistrictEnum;
+import com.gdsc.wherewego.domain.enumCategory.ThemeEnum;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,8 +23,11 @@ public class Place {
     @Column(nullable = false)
     private String name;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    private Category category;
+    @Enumerated(EnumType.STRING)
+    private ThemeEnum theme;
+
+    @Enumerated(EnumType.STRING)
+    private DistrictEnum district;
 
     @Column(nullable = false)
     private Double latitude;

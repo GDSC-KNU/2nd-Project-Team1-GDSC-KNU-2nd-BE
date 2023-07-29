@@ -1,6 +1,6 @@
 package com.gdsc.wherewego.domain;
 
-import com.gdsc.wherewego.api.dto.UserDayRequestDTO;
+import com.gdsc.wherewego.api.dto.CategoryDTO;
 import com.gdsc.wherewego.domain.category.District;
 import com.gdsc.wherewego.domain.category.FoodType;
 import com.gdsc.wherewego.domain.category.Theme;
@@ -10,7 +10,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,10 +35,6 @@ public class Schedule {
     @Builder.Default
     private boolean isDone = false;
 
-    @JoinColumn(name = "CATEGORY_ID")
-    @OneToOne(mappedBy = "schedule")
-    private Category category;
-
     @ManyToOne
     @JoinColumn(nullable = false)
     private User user;
@@ -48,16 +43,22 @@ public class Schedule {
     @Builder.Default
     private List<DailySchedule> dailySchedules = new ArrayList<>();
 
-    @Column(nullable = false)
+    @OneToMany(mappedBy = "schedule", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    private List<FoodType> foodType = new ArrayList<>();
+
+    @OneToMany(mappedBy = "schedule", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    private List<Theme> theme = new ArrayList<>();
+
+    @OneToMany(mappedBy = "schedule", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    private List<District> district = new ArrayList<>();
+
     private Integer withPeople;
 
-    @Column(nullable = false)
     private Integer budget;
 
-    @Column(nullable = false)
     private String transportation;
 
-    public Schedule(User user, UserDayRequestDTO dayDTO){
+    public Schedule(User user, CategoryDTO.UserDayRequestDTO dayDTO){
         this.user = user;
         this.startDate = dayDTO.getStartDate();
         this.endDate = dayDTO.getEndDate();
@@ -70,5 +71,17 @@ public class Schedule {
 
     public void setTransportation(String transportation){
         this.transportation = transportation;
+    }
+
+    public void setDistrict(List<District> district){
+        this.district = district;
+    }
+
+    public void setFoodType(List<FoodType> foodType){
+        this.foodType = foodType;
+    }
+
+    public void setTheme(List<Theme> theme){
+        this.theme = theme;
     }
 }
