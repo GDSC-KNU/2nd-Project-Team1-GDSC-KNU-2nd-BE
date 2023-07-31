@@ -1,13 +1,13 @@
 spring:
   datasource:
-    url: jdbc:h2:tcp://localhost/~/where
+    url: jdbc:h2:tcp://localhost/~/wherewego
     username: sa
     password:
     driver-class-name: org.h2.Driver
 
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
     properties:
       hibernate:
         show_sql: true
@@ -28,4 +28,4 @@ oauth:
       api: https://kapi.kakao.com
 
 jwt:
-  secret-key: kimgaheezzanghahahaiwanttogohomerightnow12345
+  secret-key: KimGaheeZZanghahaha1234iwanttogohomerightnow12345ewrasgdhfjydthsfaedefsdthfjghkhfhdfgsfad

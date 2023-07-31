@@ -8,9 +8,11 @@ import org.junit.jupiter.api.Test;
 
 import java.util.NoSuchElementException;
 
-import static com.gdsc.wherewego.domain.constant.District.*;
-import static com.gdsc.wherewego.domain.constant.Theme.*;
+import static com.gdsc.wherewego.domain.category.District.*;
+import static com.gdsc.wherewego.domain.category.Theme.*;
 
+import static com.gdsc.wherewego.domain.enumCategory.DistrictEnum.BUK_GU;
+import static com.gdsc.wherewego.domain.enumCategory.ThemeEnum.WALK;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DisplayName("장소 JPA 연결 테스트")
