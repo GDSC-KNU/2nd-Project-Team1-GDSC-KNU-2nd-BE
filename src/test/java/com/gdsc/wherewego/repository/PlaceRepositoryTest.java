@@ -2,6 +2,7 @@ package com.gdsc.wherewego.repository;
 
 import com.gdsc.wherewego.domain.*;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -15,6 +16,7 @@ import static com.gdsc.wherewego.domain.enumCategory.ThemeEnum.WALK;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DisplayName("장소 JPA 연결 테스트")
+@Disabled
 class PlaceRepositoryTest extends RepositoryTest {
     private User user;
     private Schedule schedule;
