@@ -1,6 +1,9 @@
 package com.gdsc.wherewego.repository;
 
 import com.gdsc.wherewego.domain.*;
+import com.gdsc.wherewego.domain.category.District;
+import com.gdsc.wherewego.domain.category.FoodType;
+import com.gdsc.wherewego.domain.category.Theme;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
@@ -10,9 +13,6 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-import static com.gdsc.wherewego.domain.constant.District.*;
-import static com.gdsc.wherewego.domain.constant.FoodType.*;
-import static com.gdsc.wherewego.domain.constant.Theme.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -23,7 +23,9 @@ class ImageRepositoryTest extends RepositoryTest {
     private Schedule schedule;
     private Post post;
     private Image image;
-
+    private FoodType foodType;
+    private Theme theme;
+    private District district;
     @BeforeEach
     void init() {
         user = User.builder()
@@ -34,11 +36,23 @@ class ImageRepositoryTest extends RepositoryTest {
         schedule = Schedule.builder()
                 .user(user)
                 .name("나의 일정")
-                .startDate(LocalDate.of(2023,7,16))
-                .endDate(LocalDate.of(2023,7,16))
-                .foodType(KOREAN)
-                .theme(HISTORY)
-                .district(BUK_GU)
+                .startDate("2023/07/16")
+                .endDate("2023/07/16")
+                .build();
+
+        foodType = FoodType.builder()
+                .schedule(schedule)
+                .type("한식")
+                .build();
+
+        theme = Theme.builder()
+                .schedule(schedule)
+                .type("사격")
+                .build();
+
+        district = District.builder()
+                .schedule(schedule)
+                .city("북구")
                 .build();
 
         post = Post.builder()

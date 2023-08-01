@@ -1,6 +1,9 @@
 package com.gdsc.wherewego.repository;
 
 import com.gdsc.wherewego.domain.*;
+import com.gdsc.wherewego.domain.category.District;
+import com.gdsc.wherewego.domain.category.FoodType;
+import com.gdsc.wherewego.domain.category.Theme;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
@@ -8,10 +11,9 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 
-import static com.gdsc.wherewego.domain.constant.District.*;
-import static com.gdsc.wherewego.domain.constant.FoodType.*;
-import static com.gdsc.wherewego.domain.constant.Theme.*;
 
+import static com.gdsc.wherewego.domain.enumCategory.DistrictEnum.BUK_GU;
+import static com.gdsc.wherewego.domain.enumCategory.ThemeEnum.WALK;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DisplayName("하루 일정-장소 맵 JPA 연결 테스트")
@@ -22,22 +24,38 @@ class DailyPlaceRepositoryTest extends RepositoryTest{
     private DailyPlace dailyPlace;
     private DailySchedule dailySchedule;
     private Place place;
+    private FoodType foodType;
+    private Theme theme;
+    private District district;
 
     @BeforeEach
     void init() {
         user = User.builder()
                 .nickname("창윤")
+                .email("aaa@gmail.com")
                 .profileUrl("www.asd.com")
                 .build();
 
         schedule = Schedule.builder()
                 .user(user)
                 .name("나의 일정")
-                .startDate(LocalDate.of(2023,7,16))
-                .endDate(LocalDate.of(2023,7,16))
-                .foodType(KOREAN)
-                .theme(HISTORY)
-                .district(BUK_GU)
+                .startDate("2023/07/16")
+                .endDate("2023/07/16")
+                .build();
+
+        foodType = FoodType.builder()
+                .schedule(schedule)
+                .type("한식")
+                .build();
+
+        theme = Theme.builder()
+                .schedule(schedule)
+                .type("사격")
+                .build();
+
+        district = District.builder()
+                .schedule(schedule)
+                .city("북구")
                 .build();
 
         dailySchedule = DailySchedule.builder()

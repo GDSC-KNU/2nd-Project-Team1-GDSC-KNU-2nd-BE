@@ -19,10 +19,10 @@ import java.time.LocalDateTime;
 public abstract class AuditingFields {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     @CreatedDate
-    @Column(nullable = false)
+    @Column(updatable = false)
     private LocalDateTime createdAt;
 
     @CreatedBy
-    @Column(nullable = false, updatable = false, length = 100)
+    @Column(updatable = false, length = 100)
     private String createdBy;
 }

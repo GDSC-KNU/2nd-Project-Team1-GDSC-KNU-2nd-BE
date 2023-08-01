@@ -4,9 +4,9 @@ import com.gdsc.wherewego.config.RestDocsTestSupport;
 import com.gdsc.wherewego.domain.Image;
 import com.gdsc.wherewego.domain.Schedule;
 import com.gdsc.wherewego.domain.User;
-import com.gdsc.wherewego.domain.constant.District;
-import com.gdsc.wherewego.domain.constant.FoodType;
-import com.gdsc.wherewego.domain.constant.Theme;
+import com.gdsc.wherewego.domain.category.District;
+import com.gdsc.wherewego.domain.category.FoodType;
+import com.gdsc.wherewego.domain.category.Theme;
 import com.gdsc.wherewego.dto.request.PostCreateRequest;
 import com.gdsc.wherewego.dto.request.PostUpdateRequest;
 import com.gdsc.wherewego.dto.response.ScheduleFindResponse;
@@ -14,6 +14,7 @@ import com.gdsc.wherewego.dto.response.post.PostCreateResponse;
 import com.gdsc.wherewego.dto.response.post.PostFindAllResponse;
 import com.gdsc.wherewego.dto.response.post.PostFindResponse;
 import com.gdsc.wherewego.dto.response.UserFindResponse;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -38,14 +39,30 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(PostController.class)
 class PostControllerTest extends RestDocsTestSupport {
 
+    private Schedule schedule = Schedule.builder()
+            .name("경북대 투어")
+            .name("경북대 투어")
+            .startDate("2023/07/27")
+            .endDate("2023/07/27")
+            .build();
+
+    private FoodType foodType = FoodType.builder()
+            .schedule(schedule)
+            .type("한식")
+            .build();
+
+    private Theme theme = Theme.builder()
+            .schedule(schedule)
+            .type("사격")
+            .build();
+
+    private District district= District.builder()
+            .schedule(schedule)
+            .city("북구")
+            .build();
+
     private final PostFindResponse findResponse = new PostFindResponse(
-            ScheduleFindResponse.of(Schedule.builder()
-                    .name("경북대 투어")
-                    .startDate(LocalDate.of(2023,7,27))
-                    .endDate(LocalDate.of(2023,7,27))
-                    .district(District.BUK_GU)
-                    .foodType(FoodType.KOREAN)
-                    .theme(Theme.HISTORY).build()),
+            ScheduleFindResponse.of(schedule),
             false,
             0,
             "내 일기",
