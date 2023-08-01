@@ -5,16 +5,13 @@ import com.gdsc.wherewego.domain.Image;
 import com.gdsc.wherewego.domain.Schedule;
 import com.gdsc.wherewego.domain.User;
 import com.gdsc.wherewego.domain.category.District;
-import com.gdsc.wherewego.domain.category.FoodType;
-import com.gdsc.wherewego.domain.category.Theme;
 import com.gdsc.wherewego.dto.request.PostCreateRequest;
 import com.gdsc.wherewego.dto.request.PostUpdateRequest;
-import com.gdsc.wherewego.dto.response.ScheduleFindResponse;
+import com.gdsc.wherewego.dto.response.post.PostScheduleResponse;
 import com.gdsc.wherewego.dto.response.post.PostCreateResponse;
 import com.gdsc.wherewego.dto.response.post.PostFindAllResponse;
 import com.gdsc.wherewego.dto.response.post.PostFindResponse;
 import com.gdsc.wherewego.dto.response.UserFindResponse;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -24,7 +21,6 @@ import org.springframework.mock.web.MockMultipartFile;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.*;
 import org.springframework.restdocs.payload.JsonFieldType;
 import java.nio.charset.StandardCharsets;
-import java.time.LocalDate;
 import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
@@ -39,30 +35,16 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(PostController.class)
 class PostControllerTest extends RestDocsTestSupport {
 
-    private Schedule schedule = Schedule.builder()
-            .name("경북대 투어")
-            .name("경북대 투어")
-            .startDate("2023/07/27")
-            .endDate("2023/07/27")
-            .build();
-
-    private FoodType foodType = FoodType.builder()
-            .schedule(schedule)
-            .type("한식")
-            .build();
-
-    private Theme theme = Theme.builder()
-            .schedule(schedule)
-            .type("사격")
-            .build();
-
-    private District district= District.builder()
-            .schedule(schedule)
-            .city("북구")
-            .build();
-
     private final PostFindResponse findResponse = new PostFindResponse(
-            ScheduleFindResponse.of(schedule),
+            PostScheduleResponse.of(Schedule.builder()
+                    .name("경북대 투어")
+                    .startDate("2023/07/27")
+                    .endDate("2023/07/27")
+                    .district(List.of(
+                            District.builder().city("북구").build(),
+                            District.builder().city("중구").build()
+                    ))
+                    .build()),
             false,
             0,
             "내 일기",
@@ -90,13 +72,9 @@ class PostControllerTest extends RestDocsTestSupport {
                         ),
                         responseFields(
                                 fieldWithPath("schedule").description("일정 정보"),
-                                fieldWithPath("schedule.scheduleName").description("일정 이름"),
                                 fieldWithPath("schedule.startDate").description("일정 시작 날짜"),
                                 fieldWithPath("schedule.endDate").description("일정 종료 날짜"),
-                                fieldWithPath("schedule.district").description("일정에 포함된 지역"),
-                                fieldWithPath("schedule.foodType").description("일정에 포함된 음식 종류"),
-                                fieldWithPath("schedule.theme").description("일정의 테마"),
-                                fieldWithPath("schedule.isDone").type(JsonFieldType.BOOLEAN).description("일정 완료 여부"),
+                                fieldWithPath("schedule.district").description("일정에 포함된 지역 목록"),
                                 fieldWithPath("title").description("게시물 제목"),
                                 fieldWithPath("content").description("게시물 내용"),
                                 fieldWithPath("liked").type(JsonFieldType.BOOLEAN).description("현재 사용자 좋아요 클릭 여부"),
@@ -126,17 +104,13 @@ class PostControllerTest extends RestDocsTestSupport {
                                 List.of(
                                         fieldWithPath("posts").type(JsonFieldType.ARRAY).description("나의 일정 목록"),
                                         fieldWithPath("posts[].schedule").description("일정 정보"),
-                                        fieldWithPath("posts[].schedule.scheduleName").description("일정 이름"),
                                         fieldWithPath("posts[].schedule.startDate").description("일정 시작 날짜"),
                                         fieldWithPath("posts[].schedule.endDate").description("일정 종료 날짜"),
-                                        fieldWithPath("posts[].schedule.district").description("일정에 포함된 지역"),
-                                        fieldWithPath("posts[].schedule.foodType").description("일정에 포함된 음식 종류"),
-                                        fieldWithPath("posts[].schedule.theme").description("일정의 테마"),
-                                        fieldWithPath("posts[].schedule.isDone").type(JsonFieldType.BOOLEAN).description("일정 완료 여부"),
+                                        fieldWithPath("posts[].schedule.district").description("일정에 포함된 지역 목록"),
                                         fieldWithPath("posts[].title").description("게시물 제목"),
                                         fieldWithPath("posts[].content").description("게시물 내용"),
                                         fieldWithPath("posts[].liked").type(JsonFieldType.BOOLEAN).description("현재 사용자 좋아요 클릭 여부"),
-                                        fieldWithPath("posts[].likes").description("좋아요 수"),
+                                        fieldWithPath("posts[].likes").type(JsonFieldType.NUMBER).description("좋아요 수"),
                                         fieldWithPath("posts[].createdAt").description("작성 일시"),
                                         fieldWithPath("posts[].user").description("작성자 정보"),
                                         fieldWithPath("posts[].user.nickname").description("작성자 이름"),
@@ -187,7 +161,14 @@ class PostControllerTest extends RestDocsTestSupport {
                 .andDo(restDocs.document(
                         requestParts(
                                 partWithName("images").description("첨부한 이미지 파일 목록"),
-                                partWithName("createRequest").description("게시물 생성에 필요한 정보 (스케줄 id : 게시물 생성에 필요한 완료된 일정의 id)")
+                                partWithName("createRequest").description("""
+                                        게시물 생성에 필요한 정보 :
+                                        
+                                        scheduleId : 게시물 생성에 필요한 완료된 일정의 id
+                                        
+                                        title : 게시물 제목
+                                        
+                                        content : 게시물 내용""")
                         )
                 ));
     }
@@ -232,7 +213,12 @@ class PostControllerTest extends RestDocsTestSupport {
                 .andDo(restDocs.document(
                         requestParts(
                                 partWithName("images").description("바뀐 첨부 이미지 파일 목록"),
-                                partWithName("updateRequest").description("수정할 게시물 정보 (제목, 내용)")
+                                partWithName("updateRequest").description("""
+                                        수정할 게시물 정보 :
+                                        
+                                        title : 수정한 게시물 제목
+                                        
+                                        content 수정한 게시물 내용""")
                         )
                 ));
 }

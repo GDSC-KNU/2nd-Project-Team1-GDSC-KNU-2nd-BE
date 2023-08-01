@@ -461,17 +461,13 @@ Host: localhost:8080</code></pre>
 <div class="content">
 <pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 200 OK
 Content-Type: application/json;charset=UTF-8
-Content-Length: 462
+Content-Length: 350
 
 {
   "schedule" : {
-    "scheduleName" : "경북대 투어",
-    "startDate" : "2023-07-27",
-    "endDate" : "2023-07-27",
-    "district" : "BUK_GU",
-    "foodType" : "KOREAN",
-    "theme" : "HISTORY",
-    "isDone" : false
+    "startDate" : "2023/07/27",
+    "endDate" : "2023/07/27",
+    "district" : "북구,중구"
   },
   "liked" : false,
   "likes" : 0,
@@ -530,11 +526,6 @@ Content-Length: 462
 <td class="tableblock halign-left valign-top"><p class="tableblock">일정 정보</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>schedule.scheduleName</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">일정 이름</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>schedule.startDate</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">일정 시작 날짜</p></td>
@@ -547,22 +538,7 @@ Content-Length: 462
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>schedule.district</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">일정에 포함된 지역</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>schedule.foodType</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">일정에 포함된 음식 종류</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>schedule.theme</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">일정의 테마</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>schedule.isDone</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">일정 완료 여부</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">일정에 포함된 지역 목록</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>title</code></p></td>
@@ -627,18 +603,14 @@ Host: localhost:8080</code></pre>
 <div class="content">
 <pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 200 OK
 Content-Type: application/json;charset=UTF-8
-Content-Length: 522
+Content-Length: 402
 
 {
   "posts" : [ {
     "schedule" : {
-      "scheduleName" : "경북대 투어",
-      "startDate" : "2023-07-27",
-      "endDate" : "2023-07-27",
-      "district" : "BUK_GU",
-      "foodType" : "KOREAN",
-      "theme" : "HISTORY",
-      "isDone" : false
+      "startDate" : "2023/07/27",
+      "endDate" : "2023/07/27",
+      "district" : "북구,중구"
     },
     "liked" : false,
     "likes" : 0,
@@ -681,11 +653,6 @@ Content-Length: 522
 <td class="tableblock halign-left valign-top"><p class="tableblock">일정 정보</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>posts[].schedule.scheduleName</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">일정 이름</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>posts[].schedule.startDate</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">일정 시작 날짜</p></td>
@@ -698,22 +665,7 @@ Content-Length: 522
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>posts[].schedule.district</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">일정에 포함된 지역</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>posts[].schedule.foodType</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">일정에 포함된 음식 종류</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>posts[].schedule.theme</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">일정의 테마</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>posts[].schedule.isDone</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">일정 완료 여부</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">일정에 포함된 지역 목록</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>posts[].title</code></p></td>
@@ -814,7 +766,10 @@ Location: api/posts/1</code></pre>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>createRequest</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">게시물 생성에 필요한 정보 (스케줄 id : 게시물 생성에 필요한 완료된 일정의 id)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">게시물 생성에 필요한 정보 :</p>
+<p class="tableblock">scheduleId : 게시물 생성에 필요한 완료된 일정의 id</p>
+<p class="tableblock">title : 게시물 제목</p>
+<p class="tableblock">content : 게시물 내용</p></td>
 </tr>
 </tbody>
 </table>
@@ -879,7 +834,9 @@ Content-Type: application/json
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>updateRequest</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">수정할 게시물 정보 (제목, 내용)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">수정할 게시물 정보 :</p>
+<p class="tableblock">title : 수정한 게시물 제목</p>
+<p class="tableblock">content 수정한 게시물 내용</p></td>
 </tr>
 </tbody>
 </table>
@@ -1024,7 +981,7 @@ Host: localhost:8080</code></pre>
 <div id="footer">
 <div id="footer-text">
 Version 0.0.1-SNAPSHOT<br>
-Last updated 2023-07-28 20:59:46 +0900
+Last updated 2023-08-01 17:51:43 +0900
 </div>
 </div>
 </body>

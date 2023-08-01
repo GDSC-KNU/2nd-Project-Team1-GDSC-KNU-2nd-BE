@@ -1,11 +1,10 @@
 package com.gdsc.wherewego.dto.response.post;
 
 import com.gdsc.wherewego.domain.Post;
-import com.gdsc.wherewego.dto.response.ScheduleFindResponse;
 import com.gdsc.wherewego.dto.response.UserFindResponse;
 
 public record PostFindResponse(
-        ScheduleFindResponse schedule,
+        PostScheduleResponse schedule,
         boolean liked,
         int likes,
         String title,
@@ -15,7 +14,7 @@ public record PostFindResponse(
 ) {
     public static PostFindResponse of(final Post post, boolean liked) {
         return new PostFindResponse(
-                ScheduleFindResponse.of(post.getSchedule()),
+                PostScheduleResponse.of(post.getSchedule()),
                 liked,
                 post.getLikes(),
                 post.getTitle(),
