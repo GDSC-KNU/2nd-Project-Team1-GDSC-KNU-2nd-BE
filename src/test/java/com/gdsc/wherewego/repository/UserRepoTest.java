@@ -20,8 +20,22 @@ public class UserRepoTest extends RepositoryTest {
     }
 
     @Test
-    @DisplayName("이메일로 사용자를 찾는다.")
+    @DisplayName("사용자를 저장한다.")
     void save(){
+        //given, when
+        user = User.builder()
+                .nickname("짱가")
+                .profileUrl("www.gaheezzang.com")
+                .email("zzang@mail.com")
+                .build();
+        String savedUserEmail = users.save(user).getEmail();
+
+        //then
+        Assertions.assertThat(user.getEmail()).isEqualTo(savedUserEmail);
+    }
+    @Test
+    @DisplayName("이메일로 사용자를 찾는다.")
+    void findByEmail(){
         //given, when
         users.save(user);
         User findUser = users.findByEmail(user.getEmail()).get();
