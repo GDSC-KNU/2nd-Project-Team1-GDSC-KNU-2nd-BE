@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 @DisplayName("사용자 관련 테스트")
-@Disabled
 public class UserRepoTest extends RepositoryTest {
     private User user;
     @BeforeEach
