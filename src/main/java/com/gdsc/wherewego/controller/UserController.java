@@ -1,8 +1,9 @@
 package com.gdsc.wherewego.controller;
 
 import com.gdsc.wherewego.domain.User;
+import com.gdsc.wherewego.dto.response.UserDto;
 import com.gdsc.wherewego.oauth.AuthTokensGenerator;
-import com.gdsc.wherewego.repository.UserRepository;
+import com.gdsc.wherewego.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,17 +14,18 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/api/users")
 public class UserController {
-    private final UserRepository userRepository;
-    private final AuthTokensGenerator authTokensGenerator;
+    private final UserService userService;
+
 
     @GetMapping
-    public ResponseEntity<List<User>> findAll() {
-        return ResponseEntity.ok(userRepository.findAll());
+    public ResponseEntity<List<UserDto>> findAll() {
+
+        return ResponseEntity.ok(userService.findAllUser());
     }
 
     @GetMapping("/{accessToken}")
-    public ResponseEntity<User> findByAccessToken(@PathVariable String accessToken) {
-        Long userId = authTokensGenerator.extractMemberId(accessToken);
-        return ResponseEntity.ok(userRepository.findById(userId).get());
+    public ResponseEntity<UserDto> findByAccessToken(@PathVariable String accessToken) {
+
+        return ResponseEntity.ok(userService.findByAccessToken(accessToken));
     }
 }

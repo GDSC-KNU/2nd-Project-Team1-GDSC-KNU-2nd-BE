@@ -6,7 +6,6 @@ import com.gdsc.wherewego.domain.User;
 import com.gdsc.wherewego.domain.category.District;
 import com.gdsc.wherewego.domain.category.FoodType;
 import com.gdsc.wherewego.domain.category.Theme;
-import com.gdsc.wherewego.repository.ScheduleRepository;
 import com.gdsc.wherewego.repository.UserRepository;
 import com.gdsc.wherewego.service.CategoryService;
 import com.gdsc.wherewego.service.ScheduleService;
