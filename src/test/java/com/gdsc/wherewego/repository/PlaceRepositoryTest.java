@@ -8,8 +8,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.NoSuchElementException;
 
-import static com.gdsc.wherewego.domain.category.District.*;
-import static com.gdsc.wherewego.domain.category.Theme.*;
 
 import static com.gdsc.wherewego.domain.enumCategory.DistrictEnum.BUK_GU;
 import static com.gdsc.wherewego.domain.enumCategory.ThemeEnum.WALK;

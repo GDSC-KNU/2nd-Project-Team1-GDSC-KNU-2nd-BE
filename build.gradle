@@ -12,6 +12,7 @@ java {
 	sourceCompatibility = '17'
 }
 
+
 configurations {
 	asciidoctorExt
 	compileOnly {
