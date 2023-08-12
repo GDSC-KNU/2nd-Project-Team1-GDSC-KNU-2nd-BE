@@ -1,7 +1,7 @@
 package com.gdsc.wherewego.dto.response.post;
 
+import com.gdsc.wherewego.domain.Category;
 import com.gdsc.wherewego.domain.Schedule;
-import com.gdsc.wherewego.domain.category.District;
 
 import java.util.stream.Collectors;
 
@@ -11,12 +11,11 @@ public record PostScheduleResponse(
         String district
 ) {
     public static PostScheduleResponse of(final Schedule schedule) {
+        Category category = schedule.getCategory();
         return new PostScheduleResponse(
-                schedule.getStartDate(),
-                schedule.getEndDate(),
-                schedule.getDistrict().stream()
-                        .map(District::getCity)
-                        .collect(Collectors.joining(","))
+                category.getStartDate(),
+                category.getEndDate(),
+                category.getDistrict().stream().collect(Collectors.joining(","))
         );
     }
 }

@@ -1,10 +1,11 @@
 package com.gdsc.wherewego.controller;
 
 import com.gdsc.wherewego.config.RestDocsTestSupport;
+import com.gdsc.wherewego.domain.Category;
 import com.gdsc.wherewego.domain.Image;
 import com.gdsc.wherewego.domain.Schedule;
 import com.gdsc.wherewego.domain.User;
-import com.gdsc.wherewego.domain.category.District;
+import com.gdsc.wherewego.domain.enumCategory.Transportation;
 import com.gdsc.wherewego.dto.request.PostCreateRequest;
 import com.gdsc.wherewego.dto.request.PostUpdateRequest;
 import com.gdsc.wherewego.dto.response.post.PostScheduleResponse;
@@ -21,6 +22,8 @@ import org.springframework.mock.web.MockMultipartFile;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.*;
 import org.springframework.restdocs.payload.JsonFieldType;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
@@ -34,17 +37,26 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @WebMvcTest(PostController.class)
 class PostControllerTest extends RestDocsTestSupport {
+    List<String> district = new ArrayList<String>(Arrays.asList("북구","동구","중구"));
+    List<String> foodType = new ArrayList<String>(Arrays.asList("한식","일식"));
+    List<String> theme = new ArrayList<String>(Arrays.asList("카페","경치관람","수목원/정원","가벼운 산책","역사","미술/예술","자연/과학","테마박물관"));
 
+    private final Category category = Category.builder()
+            .startDate("2023/08/07")
+            .endDate("2023/08/10")
+            .district(district)
+            .foodType(foodType)
+            .theme(theme)
+            .withPeople(2)
+            .budget(100000)
+            .transportation(Transportation.BUS)
+            .build();
+    private final Schedule schedule = Schedule.builder()
+            .name("경북대 투어")
+            .category(category)
+            .build();
     private final PostFindResponse findResponse = new PostFindResponse(
-            PostScheduleResponse.of(Schedule.builder()
-                    .name("경북대 투어")
-                    .startDate("2023/07/27")
-                    .endDate("2023/07/27")
-                    .district(List.of(
-                            District.builder().city("북구").build(),
-                            District.builder().city("중구").build()
-                    ))
-                    .build()),
+            PostScheduleResponse.of(schedule),
             false,
             0,
             "내 일기",

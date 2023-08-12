@@ -1,0 +1,11 @@
+[[Category-API]]
+== 카테고리 API
+
+ifndef::snippets[]
+:snippets: ./build/generated-snippets
+endif::[]
+
+'''
+[[Category-스케쥴-생성]]
+=== 카테고리 입력 받기
+operation::category-controller-test/make-schedule[snippets='http-request,http-response,request-body,request-fields']

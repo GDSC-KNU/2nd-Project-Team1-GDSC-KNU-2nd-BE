@@ -1,7 +1,5 @@
 package com.gdsc.wherewego.domain;
 
-import com.gdsc.wherewego.domain.category.District;
-import com.gdsc.wherewego.domain.category.Theme;
 import com.gdsc.wherewego.domain.enumCategory.DistrictEnum;
 import com.gdsc.wherewego.domain.enumCategory.ThemeEnum;
 import jakarta.persistence.*;

@@ -12,3 +12,6 @@
 
 === Post API
 * link:post.html[게시물 API 목록, window=blank]
+
+=== Category API
+* link:category.html[카테고리 API 목록, window=blank]

@@ -1,8 +1,10 @@
 package com.gdsc.wherewego.service;
 
-import com.gdsc.wherewego.api.dto.CategoryDTO;
+import com.gdsc.wherewego.domain.Category;
+import com.gdsc.wherewego.dto.request.CategoryRequest;
 import com.gdsc.wherewego.domain.Schedule;
 import com.gdsc.wherewego.domain.User;
+import com.gdsc.wherewego.oauth.SecurityUtil;
 import com.gdsc.wherewego.repository.ScheduleRepository;
 import com.gdsc.wherewego.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -19,16 +21,10 @@ public class ScheduleService {
     private final ScheduleRepository scheduleRepository;
 
     @Transactional
-    public void saveSchedule(CategoryDTO.UserDayRequestDTO dayDTO, Long userId){
-        Optional<User> optionalUser = userRepository.findById(userId);
-        if(optionalUser.isPresent()) {
-            User user = optionalUser.get();
-            Schedule schedule = new Schedule(user, dayDTO);
-            scheduleRepository.save(schedule);
-
-        }
-        else
-            System.out.println("No User");
+    public Long saveSchedule(User user, Category category){
+        Schedule schedule = new Schedule(user, category);
+        scheduleRepository.save(schedule);
+        return schedule.getId();
     }
 
     public Schedule findByUserId(Long id){
